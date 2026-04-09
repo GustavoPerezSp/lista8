@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 04</title>
+</head>
+
+<body>
+
+    Nome de um projeto feito na vida:<input type="text" id="iProjeto">
+    <button onclick="registrar()">Registrar projeto</button>
+    <button onclick="mostrarProjetos()">Mostrar Projetos</button>
+    <br><br>
+    <div id="dProjetos"></div>
+</body>
+
+</html>
+
+<script>
+
+    let listaDeProjetos = [];
+    function registrar() {
+        let projeto = iProjeto.value;
+        listaDeProjetos.push(projeto);
+        let msg = ``;
+
+        msg += `Você já fez ${listaDeProjetos.length} projetos. Por isso você é um profissional `;
+
+        if (listaDeProjetos.length >= 13) {
+            msg += `Sênior<br>`
+        } else if (listaDeProjetos.length >= 5) {
+            msg += `Pleno<br>`
+        } else {
+            msg += `Júnior<br>`
+        }
+
+        dProjetos.innerHTML = msg;
+    }
+
+    function mostrarProjetos() {
+        let msg = ``;
+        for (let i = 0; i <= listaDeProjetos.length; i++) {
+            msg += `${listaDeProjetos[listaDeProjetos.length - i]}<br>`
+        }
+
+        dProjetos.innerHTML += msg
+    }
+</script>
