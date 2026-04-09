@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 03</title>
+</head>
+
+<body>
+
+    <span id="sFavorito">1º Aluno: </span><input type="text" id="iAluno"> <button onclick="cadastrar()">Cadastrar</button>
+    <br><br><div id="dAlunos"></div>
+</body>
+
+</html>
+
+<script>
+
+    let listaDeAlunos = [];
+    function cadastrar() {
+        let aluno = iAluno.value;
+        listaDeAlunos.push(aluno);
+        let msg = ``;
+        for (let i = 0; i <= listaDeAlunos.length - 1; i++) {
+            msg += `${listaDeAlunos.length - (i)}º Aluno: : ${listaDeAlunos[listaDeAlunos.length - (i + 1)]}<br>`;
+        }
+
+        dAlunos.innerHTML = msg;
+        sFavorito.innerHTML = `${listaDeAlunos.length + 1}º Aluno: : `
+
+
+    }
+
+</script>
