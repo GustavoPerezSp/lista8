@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 01</title>
+</head>
+
+<body>
+
+    <span id="sFavorito">1º Filme Favorito</span><input type="text" id="iFavorito"> <button
+        onclick="cadastrar()">Cadastrar</button>
+    <div id="dFavoritos"></div>
+</body>
+
+</html>
+
+<script>
+
+    let listaDeFavoritos = [];
+    function cadastrar() {
+        let filme = iFavorito.value;
+        listaDeFavoritos.push(filme);
+        let msg = ``;
+        for (let i = 0; i <= listaDeFavoritos.length - 1; i++) {
+            msg += `${i + 1}º filme favorito: ${listaDeFavoritos[i]}<br>`;
+        }
+
+        dFavoritos.innerHTML = msg;
+        sFavorito.innerHTML = `${listaDeFavoritos.length + 1}º Filme Favorito: `
+
+
+    }
+
+</script>
