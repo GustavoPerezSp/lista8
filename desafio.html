@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    Digite a Quantidade de batalhas: <input type="text" id="iBatalhas"><br>
+    Digite a Quantidade de marinheiros em cada batalha: <input type="text" id="iMarinheiros"><br>
+    Digite a Quantidade de carnes disponíveis: <input type="text" id="iCarnes">
+
+    <button onclick="batalhar()">Batalhar!</button><br><br>
+
+    <div id="dResultado"></div>
+</body>
+
+</html>
+
+<script>
+
+    function batalhar() {
+        let energiaLuffy = 100;
+
+        let batalhas = iBatalhas.value;
+        let marinheiros = iMarinheiros.value;
+        let carnes = iCarnes.value;
+        let marinheirosDerrotados = 0
+
+        let qtdInimigos = marinheiros * batalhas;
+
+        let ganhou = true;
+        for (let i = 0; i < batalhas; i++) {
+
+            if (energiaLuffy > 0 || carnes > 0) {
+
+                if (energiaLuffy <= 0 && carnes > 0) {
+                    carnes--;
+                    energiaLuffy = 100;
+                }else{
+                    ganhou = false;
+                }
+
+                if (qtdInimigos > 0) {
+                    energiaLuffy -= 10;
+                    energiaLuffy -= 5;
+                    marinheirosDerrotados++;
+                    qtdInimigos--;
+                }
+
+            } else {
+                ganhou = false;
+            }
+        }
+
+        let msg = ``;
+        if (ganhou) {
+            msg += `Resultado: Luffy saiu vitorioso! <br>`
+        } else {
+            msg += `Resultado: Luffy saiu derrotado! <br>`
+        }
+
+        msg += `Quantidade de carnes restantes: ${carnes}<br>
+                Quantidade de marinheiros derrotados: ${marinheirosDerrotados}<br>
+                Energia restante ao final das batalhas: ${energiaLuffy}`
+
+
+
+        dResultado.innerHTML = msg;
+
+    }
+</script>
