@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="iLinha">
+    <button onclick="gravarBusao()">Gravar busão</button>
+    <button onclick="pesquisar()">Pesquisar</button>
+    <div id="dBusoes"></div>
+    <hr>
+    <div id="dPesquisa"></div>
+</body>
+</html>
+
+<script>
+    listaDeBusoes = [];
+    function gravarBusao(){
+        let busao = iLinha.value;
+        listaDeBusoes.push(busao);
+        
+        let msg = ``;
+        for(let i = listaDeBusoes.length - 1 ; i >= 0 ; i--){
+            msg += `${listaDeBusoes[i]}<br>`
+        }
+        dBusoes.innerHTML = msg
+    }
+
+    function pesquisar(){
+        let busao = iLinha.value;
+
+        if(listaDeBusoes.includes(busao)){
+            dPesquisa.innerHTML = `Você já pegou essa linha ${''} vezes, nessa ordem: 2, 4, 8, 9  `
+        }else{
+            dPesquisa.innerHTML = `Você nunca pegou essa linha`
+        }
+    }
+
+
+</script>
