@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Desafio One Piece</title>
 </head>
 
 <body>
@@ -21,55 +21,59 @@
 </html>
 
 <script>
-
     function batalhar() {
         let energiaLuffy = 100;
 
-        let batalhas = iBatalhas.value;
-        let marinheiros = iMarinheiros.value;
-        let carnes = iCarnes.value;
-        let marinheirosDerrotados = 0
+        let batalhas = Number(iBatalhas.value);
+        let marinheiros = Number(iMarinheiros.value);
+        let carnes = Number(iCarnes.value);
 
-        let qtdInimigos = marinheiros * batalhas;
-
+        let marinheirosDerrotados = 0;
         let ganhou = true;
+
         for (let i = 0; i < batalhas; i++) {
+            energiaLuffy -= 10;
 
-            if (energiaLuffy > 0 || carnes > 0) {
-
-                if (energiaLuffy <= 0 && carnes > 0) {
+            if (energiaLuffy <= 0) {
+                if (carnes > 0) {
                     carnes--;
-                    energiaLuffy = 100;
-                }else{
+                    energiaLuffy += 100;
+                } else {
                     ganhou = false;
                 }
+            }
 
-                if (qtdInimigos > 0) {
-                    energiaLuffy -= 10;
-                    energiaLuffy -= 5;
-                    marinheirosDerrotados++;
-                    qtdInimigos--;
+            for (let j = 0; j < marinheiros; j++) {
+
+                energiaLuffy -= 5;
+                marinheirosDerrotados++;
+
+                if (energiaLuffy <= 0) {
+                    if (carnes > 0) {
+                        carnes--;
+                        energiaLuffy += 100;
+                    } else {
+                        ganhou = false;
+                    }
                 }
+            }
 
-            } else {
-                ganhou = false;
+            if (!ganhou) {
+                ganhou = false
             }
         }
 
         let msg = ``;
         if (ganhou) {
-            msg += `Resultado: Luffy saiu vitorioso! <br>`
+            msg += `<strong>Resultado: Luffy saiu vitorioso!</strong> <br><br>`;
         } else {
-            msg += `Resultado: Luffy saiu derrotado! <br>`
+            msg += `<strong>Resultado: Luffy saiu derrotado!</strong> <br><br>`;
         }
 
         msg += `Quantidade de carnes restantes: ${carnes}<br>
                 Quantidade de marinheiros derrotados: ${marinheirosDerrotados}<br>
-                Energia restante ao final das batalhas: ${energiaLuffy}`
+                Energia restante ao final das batalhas: ${energiaLuffy}`;
 
-
-
-        dResultado.innerHTML = msg;
-
+        document.getElementById('dResultado').innerHTML = msg;
     }
 </script>
